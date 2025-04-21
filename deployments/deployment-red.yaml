@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: red
+  labels:
+    app: my-app
+    type: back-end
+spec:
+  selector:
+    matchLabels:
+      type: back-end
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: back-end
+    spec:
+      containers:
+        - name: red
+          image: nginx
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: Exists
+  replicas: 2
