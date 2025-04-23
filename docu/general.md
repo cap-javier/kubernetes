@@ -28,4 +28,8 @@ si necesitamos crear algun tipo de etiqueta a un nodo o a un pod, podemos usar e
 kubectl label node node01 color=blue
 ```
 
-      
+podemos ver los eventos de los pods (y de cualquier recurso) para logging 
+
+```shell
+kubectl get events -o wide
+```
